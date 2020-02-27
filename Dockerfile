@@ -7,12 +7,12 @@ FROM golang:latest
 LABEL maintainer="Fahrezi <fahreziadh@gmail.com>"
 
 # Set the Current Working Directory inside the container
-WORKDIR /
+WORKDIR /app/server
 
 # Copy the source from the current directory to the Working Directory inside the container
 COPY . .
 
-RUN go get "github.com/auth0/go-jwt-middleware"
+RUN go get ./... 
 
 # Build the Go app
 RUN go build -o main .
