@@ -1,3 +1,3 @@
-server="mongo:27017"
+server="localhost:27017"
 database="klar"
 key="klar_secret"
