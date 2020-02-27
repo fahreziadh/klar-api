@@ -1,0 +1,3 @@
+server="localhost"
+database="klar"
+key="klar_secret"
