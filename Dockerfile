@@ -6,7 +6,7 @@ FROM golang:1.12
 LABEL maintainer="Fahrezi <fahreziadh@gmail.com>"
 
 ENV GO111MODULE=on
-WORKDIR /
+WORKDIR /app
 COPY go.mod go.sum ./
 
 RUN go mod download
