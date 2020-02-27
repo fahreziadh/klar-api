@@ -57,6 +57,7 @@ func NewRouter() {
 	}
 
 	log.Fatal(s.ListenAndServe())
+	fmt.Println("Server run on :3000")
 }
 
 func AuthHandler(r *mux.Router) {
