@@ -3,6 +3,7 @@
 # Start from the latest golang base image
 FROM golang:latest
 
+ENV GO111MODULE=on
 # Add Maintainer Info
 LABEL maintainer="Fahrezi <fahreziadh@gmail.com>"
 
@@ -12,8 +13,11 @@ WORKDIR /app/server
 # Copy the source from the current directory to the Working Directory inside the container
 COPY . .
 
-RUN go get ./... 
+RUN ls   
 
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
 # Build the Go app
 RUN go build -o main .
 
