@@ -1,14 +1,25 @@
 FROM golang:latest
-RUN mkdir -p /go/src/github.com/klar
-WORKDIR /go/src/github.com/klar
-COPY . /go/src/github.com/klar
-RUN go-wrapper download
-RUN go-wrapper install
 
-#final stage
-FROM alpine:latest
-RUN apk --no-cache add ca-certificates
-COPY --from=builder /go/bin/app /app
-ENTRYPOINT ./app
-LABEL Name=cloud-native-go Version=0.0.1
+# Add Maintainer Info
+LABEL maintainer="Fahrezi <fahreziadh@gmail.com>"
+
+# Set the Current Working Directory inside the container
+WORKDIR /app
+
+# Copy go mod and sum files
+COPY go.mod go.sum ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the container
+COPY . .
+
+# Build the Go app
+RUN go build -o main .
+
+# Expose port 8080 to the outside world
 EXPOSE 3000
+
+# Command to run the executable
+CMD ["./app"]
