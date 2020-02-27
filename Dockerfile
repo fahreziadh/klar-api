@@ -4,8 +4,8 @@ LABEL maintainer="Fahrezi <fahreziadh@gmail.com>"
 
 WORKDIR /home/ubuntu/go/src/github.com/klar/
 
-RUN go build -o app.go .
+RUN go build -o app .
 
 EXPOSE 3000
 
-CMD ["./app.go"]
+CMD ["./app"]
