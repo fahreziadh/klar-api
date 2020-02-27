@@ -2,7 +2,7 @@ FROM golang:latest
 
 LABEL maintainer="Fahrezi <fahreziadh@gmail.com>"
 
-WORKDIR /app
+WORKDIR /home/ubuntu/go/src/github.com/klar/
 
 RUN go build -o app .
 
