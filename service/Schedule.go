@@ -142,7 +142,7 @@ func GetSchedule(w http.ResponseWriter, r *http.Request) {
 
 	//Find By Class Owner------------------------------------------------------
 	class, err = dao.FindClassByOwner(username)
-	classTotal := len(class)
+	classTotal := len(class) - 1
 
 	if err != nil {
 		var err ErrorResponse
