@@ -26,7 +26,7 @@ func CreateSchedule(w http.ResponseWriter, r *http.Request) {
 		ShowError(err.Error())
 		return
 	}
-	layout := "2006-01-02"
+	layout := "2006-01-2"
 	startDate, err := time.Parse(layout, scheduleRequest.StartDate)
 	endDate := startDate.AddDate(0, scheduleRequest.TotalMonth, 0)
 	diff := endDate.Sub(startDate).Hours() / 24
