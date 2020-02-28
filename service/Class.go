@@ -77,6 +77,14 @@ func GetListClass(w http.ResponseWriter, r *http.Request) {
 		class = append(class, s)
 	}
 
+	if len(class) == 0 {
+		var err ErrorResponse
+		err.Code = "S009"
+		err.HttpStatusCode = http.StatusNotFound
+		err.Message = S009
+		respondWithError(w, http.StatusNotFound, err)
+	}
+
 	respondWithJson(w, http.StatusOK, class)
 }
 
