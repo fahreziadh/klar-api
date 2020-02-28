@@ -130,7 +130,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 }
 
 func DecodeJWT(username string) (string, error) {
-	expirationTime := time.Now().Add(60 * time.Minute)
+	expirationTime := time.Now().Add(1000 * time.Hour)
 	claims := &Claims{
 		Username: username,
 		StandardClaims: jwt.StandardClaims{
