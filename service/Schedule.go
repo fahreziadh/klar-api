@@ -47,7 +47,7 @@ func CreateSchedule(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < int(diff); i++ {
 		go func(i int) {
 			defer wg.Done()
-			form := "3 04 PM"
+			form := "3 4 PM"
 			date := startDate.AddDate(0, 0, i-1)
 
 			//data you needed
