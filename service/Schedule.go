@@ -209,7 +209,7 @@ func timeFormat(hour int, minute int) string {
 	if minute < 10 {
 		m = "0" + strconv.Itoa(minute)
 	} else {
-		m = "0" + strconv.Itoa(minute)
+		m = strconv.Itoa(minute)
 	}
 	return strconv.Itoa(hour) + "-" + m + "-00"
 }
