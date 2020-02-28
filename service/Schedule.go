@@ -18,11 +18,12 @@ import (
 func CreateSchedule(w http.ResponseWriter, r *http.Request) {
 	var scheduleRequest ScheduleRequest
 	if err := json.NewDecoder(r.Body).Decode(&scheduleRequest); err != nil {
-		var err ErrorResponse
-		err.Code = "S004"
-		err.HttpStatusCode = http.StatusBadRequest
-		err.Message = S004
-		respondWithError(w, http.StatusBadRequest, err)
+		var e ErrorResponse
+		e.Code = "S004"
+		e.HttpStatusCode = http.StatusBadRequest
+		e.Message = S004
+		respondWithError(w, http.StatusBadRequest, e)
+		ShowError(err.Error())
 		return
 	}
 	layout := "2006-01-02"
@@ -32,11 +33,12 @@ func CreateSchedule(w http.ResponseWriter, r *http.Request) {
 	weekDayRequest := scheduleRequest.DetailTime
 
 	if err != nil {
-		var err ErrorResponse
-		err.Code = "S010"
-		err.HttpStatusCode = http.StatusBadRequest
-		err.Message = S010
-		respondWithError(w, http.StatusBadRequest, err)
+		var e ErrorResponse
+		e.Code = "S010"
+		e.HttpStatusCode = http.StatusBadRequest
+		e.Message = S010
+		respondWithError(w, http.StatusBadRequest, e)
+		ShowError(err.Error())
 		return
 	}
 
@@ -100,11 +102,12 @@ func CreateSchedule(w http.ResponseWriter, r *http.Request) {
 				schedule.StartDate = finalDate
 				schedule.StartTime = finalTime
 				if err := dao.InsertSchedule(schedule); err != nil {
-					var err ErrorResponse
-					err.Code = "S011"
-					err.HttpStatusCode = http.StatusInternalServerError
-					err.Message = S011
-					respondWithError(w, http.StatusInternalServerError, err)
+					var e ErrorResponse
+					e.Code = "S011"
+					e.HttpStatusCode = http.StatusInternalServerError
+					e.Message = S011
+					ShowError(err.Error())
+					respondWithError(w, http.StatusInternalServerError, e)
 					return
 				}
 			}
@@ -115,6 +118,10 @@ func CreateSchedule(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Finish for loop…")
 
 	respondWithJson(w, http.StatusOK, "")
+}
+
+func ShowError(s string) {
+	fmt.Println(s)
 }
 
 func GetSchedule(w http.ResponseWriter, r *http.Request) {
