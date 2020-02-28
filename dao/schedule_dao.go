@@ -22,7 +22,7 @@ func (m *DAO) InsertSchedule(schedule Schedule) error {
 func (m *DAO) FindAllSchedule(isToday bool, username string, class string) ([]Schedule, error) {
 	var schedule []Schedule
 	var err error
-	dateNow := strings.Split(time.Now().String(), " ")
+	dateNow := strings.Split(time.Now().String(), "-")
 	startDate := dateNow[0] + " 00:00:00 +0000 UTC"
 	fmt.Println(startDate)
 	if isToday {
