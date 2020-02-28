@@ -33,6 +33,8 @@ func CreateClass(w http.ResponseWriter, r *http.Request) {
 		respondWithError(w, http.StatusInternalServerError, e)
 		return
 	}
+
+	respondWithJson(w, http.StatusOK, class)
 }
 
 func GetListClass(w http.ResponseWriter, r *http.Request) {
